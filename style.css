@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffc3a0 0%, #ffafbd 50%, #ff9a9e 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Floating hearts background */
+.heart {
+    position: absolute;
+    font-size: 24px;
+    color: #ff4d6d;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    25% { transform: translateY(-15px) rotate(5deg) scale(1.1); }
+    50% { transform: translateY(-25px) rotate(-5deg) scale(1); }
+    75% { transform: translateY(-15px) rotate(5deg) scale(1.1); }
+}
+
+.container {
+    text-align: center;
+    z-index: 10;
+    padding: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.95) 100%);
+    border-radius: 40px;
+    box-shadow: 0 25px 80px rgba(255, 77, 109, 0.3), 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 92%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border: 2px solid rgba(255, 182, 193, 0.4);
+}
+
+.heart-main {
+    font-size: 120px;
+    animation: heartbeat 1.2s ease-in-out infinite;
+    display: inline-block;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 10px 20px rgba(255, 77, 109, 0.4));
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+}
+
+h1 {
+    color: #d6336c;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 4px rgba(255, 77, 109, 0.2);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 120px;
+    padding: 30px;
+}
+
+/* Yes button */
+.btn-yes {
+    padding: 22px 60px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
+    color: white;
+    box-shadow: 0 12px 35px rgba(255, 77, 109, 0.5);
+    z-index: 10;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-yes:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 18px 45px rgba(255, 77, 109, 0.6);
+    background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
+}
+
+.btn-yes:active {
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* No button wrapper */
+.no-button-wrapper {
+    position: relative;
+    width: 120px;
+    height: 100px;
+}
+
+.btn-no {
+    padding: 22px 50px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #c9a0b8 0%, #b5838d 100%);
+    color: white;
+    box-shadow: 0 10px 30px rgba(181, 131, 141, 0.4);
+    position: absolute;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-no:hover {
+    background: linear-gradient(135deg, #b5838d 0%, #c9a0b8 100%);
+    box-shadow: 0 14px 40px rgba(181, 131, 141, 0.5);
+}
+
+/* Speech bubble for placeholder text */
+.bubble-container {
+    position: fixed;
+    min-width: 120px;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1001;
+}
+
+.speech-bubble {
+    background: #fff;
+    border: 2px solid #ff6b6b;
+    border-radius: 15px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    color: #e74c3c;
+    font-weight: 500;
+    position: relative;
+    animation: bubblePop 0.3s ease;
+    white-space: nowrap;
+    text-align: center;
+    pointer-events: none;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-top-color: #ff6b6b;
+    border-bottom: none;
+}
+
+@keyframes bubblePop {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Yes screen */
+.yes-screen {
+    display: none;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+    width: 100%;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, rgba(255, 77, 109, 0.08) 0%, rgba(255, 175, 189, 0.12) 100%);
+    border-radius: 40px;
+    margin-top: 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.yes-screen h2.yes-title {
+    color: #d6336c;
+    font-size: 6rem;
+    margin-bottom: 20px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 900;
+    text-shadow: 3px 3px 6px rgba(255, 77, 109, 0.3);
+    letter-spacing: 8px;
+    animation: pulseTitle 1.5s ease-in-out infinite;
+}
+
+.yes-screen p.yes-subtitle {
+    color: #b5838d;
+    font-size: 2.4rem;
+    font-weight: bold;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    max-width: none;
+    text-indent: 0;
+    text-align: center;
+    margin-top: 10px;
+}
+
+@keyframes pulseTitle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+.celebration {
+    font-size: 160px;
+    animation: celebrate 0.5s ease infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes celebrate {
+    0%, 100% { transform: rotate(-12deg) scale(1); }
+    50% { transform: rotate(12deg) scale(1.15); }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    top: -10px;
+    opacity: 0.9;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(50vh) rotate(720deg) scale(0.8);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh) rotate(1440deg) scale(0.3);
+        opacity: 0;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
